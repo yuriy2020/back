@@ -15,7 +15,6 @@ from django.urls import path
 from app.views import *
 
 urlpatterns = [
-    path('register/', RegisterView.as_view(), name='register'),
-    path('login.html/', LoginView.as_view(), name='login.html'),
-    path('logout/', LogoutView.as_view(), name='logout'),
+    path('Country/', CountryViewSet, name='Country'),
+    path('User/', UserViewSet, name='User'),
 ]
