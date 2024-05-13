@@ -31,19 +31,22 @@ class RegisterView(APIView):
 
         user = User.objects.create_user(username=email, email=email, password=password)
         token, created = Token.objects.get_or_create(user=user)
-        return Response({'token': token.key})
+        return Response({'token': token.key, 'status': status.HTTP_201_CREATED})
 
 
 class LoginView(APIView):
     def post(self, request):
         email = request.data.get('email')
         password = request.data.get('password')
+        print('>>>', email, password)
 
         user = authenticate(request, email=email, password=password)
+        # print('>>>', user)
+        # Юзер всегда none !!!!!
         if user is not None:
             login(request, user)
             token, created = Token.objects.get_or_create(user=user)
-            return Response({'token': token.key})
+            return Response({'token': token.key, 'status': status.HTTP_200_OK})
         else:
             return Response({'message': 'Invalid email or password'}, status=status.HTTP_401_UNAUTHORIZED)
 

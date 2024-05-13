@@ -17,4 +17,7 @@ from app.views import *
 urlpatterns = [
     path('Country/', CountryViewSet, name='Country'),
     path('User/', UserViewSet, name='User'),
+    path('register/', RegisterView.as_view(), name='register'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
 ]
