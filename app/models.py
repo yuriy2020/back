@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractUser, Permission, Group
 from django.db import models
 
 
@@ -28,3 +29,11 @@ class UserModel(models.Model):
 
     def __str__(self):
         return self.family
+
+
+class CurrentUser(AbstractUser):
+    groups = models.ManyToManyField(Group, related_name='currentuser_groups')
+    user_permissions = models.ManyToManyField(Permission, related_name='currentuser_user_permissions')
+
+    def __str__(self):
+        return self.username

@@ -12,3 +12,9 @@ class UserModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
         fields = '__all__'
+
+
+class CurrentUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CurrentUser
+        fields = '__all__'

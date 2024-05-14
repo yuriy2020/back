@@ -18,31 +18,40 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserModelSerializer
 
 
+class CurrentUserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.order_by('id')
+    serializer_class = CurrentUserSerializer
+
+
 class RegisterView(APIView):
     def get(self, request):
         return render(request, 'register.html')
 
     def post(self, request):
+        user = request.data.get('username')
         email = request.data.get('email')
         password = request.data.get('password')
 
         if User.objects.filter(email=email).exists():
             return Response({'message': 'User with this email already exists'}, status=status.HTTP_400_BAD_REQUEST)
 
-        user = User.objects.create_user(username=email, email=email, password=password)
+        user = User.objects.create_user(username=user, email=email, password=password)
         token, created = Token.objects.get_or_create(user=user)
         return Response({'token': token.key, 'status': status.HTTP_201_CREATED})
 
 
 class LoginView(APIView):
-    def post(self, request):
-        email = request.data.get('email')
-        password = request.data.get('password')
-        print('>>>', email, password)
+    def get(self, request):
+        return render(request, 'login.html')
 
-        user = authenticate(request, email=email, password=password)
-        # print('>>>', user)
-        # Юзер всегда none !!!!!
+    def post(self, request):
+        user = request.data.get('username')
+        # email = request.data.get('email')
+        password = request.data.get('password')
+        print('>>>', user, password)
+
+        user = authenticate(request, username=user, password=password)
+        print('>>>', user)
         if user is not None:
             login(request, user)
             token, created = Token.objects.get_or_create(user=user)
