@@ -64,15 +64,15 @@ WSGI_APPLICATION = 'rosmorport.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'rmp_xxx',  # Replace xxx with your database name
+        'NAME': 'rmp',  # Replace xxx with your database name
         'USER': 'postgres',  # Replace xxx with your database user
-        'PASSWORD': 'postgres',  # Replace xxx with your database password
+        'PASSWORD': '123456qQ',  # Replace xxx with your database password
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
 CORS_ORIGIN_WHITELIST = [
-    'http://127.0.0.1:3000',
+    'http://localhost:3000',
     # Add any other allowed origins here
 ]
 
