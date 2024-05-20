@@ -1,4 +1,4 @@
-
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -64,12 +64,20 @@ WSGI_APPLICATION = 'rosmorport.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'rmp',  # Replace xxx with your database name
+        'NAME': 'rmp_xxx',  # Replace xxx with your database name
         'USER': 'postgres',  # Replace xxx with your database user
-        'PASSWORD': '123456qQ',  # Replace xxx with your database password
+        'PASSWORD': 'postgres',  # Replace xxx with your database password
         'HOST': 'localhost',
         'PORT': '5432',
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'rmp',  # Replace xxx with your database name
+    #     'USER': 'postgres',  # Replace xxx with your database user
+    #     'PASSWORD': '123456qQ',  # Replace xxx with your database password
+    #     'HOST': 'localhost',
+    #     'PORT': '5432',
+    # }
 }
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
@@ -110,7 +118,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/to_static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'to_static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

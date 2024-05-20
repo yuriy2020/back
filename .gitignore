@@ -6,7 +6,7 @@ __pycache__
 /local_settings.py
 /gist
 /to_static
-/static
+/to_static
 /logs
 /cache
 /cache/*
