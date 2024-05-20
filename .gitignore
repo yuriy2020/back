@@ -3,10 +3,7 @@
 /env
 __pycache__
 .idea/*
-/local_settings.py
 /gist
-/to_static
-/to_static
 /logs
 /cache
 /cache/*
