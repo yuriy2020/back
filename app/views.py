@@ -5,6 +5,8 @@ from rest_framework import viewsets, status
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+from app.filters import UserFilter
 from app.serializers import *
 
 
@@ -16,6 +18,7 @@ class CountryViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = UserModel.objects.order_by('id')
     serializer_class = UserModelSerializer
+    filterset_class = UserFilter
 
 
 class CurrentUserViewSet(viewsets.ModelViewSet):

@@ -9,9 +9,21 @@ class CountryModelSerializer(serializers.ModelSerializer):
 
 
 class UserModelSerializer(serializers.ModelSerializer):
+    country = CountryModelSerializer()
+
     class Meta:
         model = UserModel
-        fields = '__all__'
+        fields = ('family',
+                  'name',
+                  'surname',
+                  'country',
+                  'sex',
+                  'traditional',
+                  'dietician',
+                  'vegan',)
+
+    def get_country(self, obj):
+        return CountryModelSerializer(obj.country).data
 
 
 class CurrentUserSerializer(serializers.ModelSerializer):
