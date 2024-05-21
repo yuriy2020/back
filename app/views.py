@@ -64,3 +64,22 @@ class LogoutView(APIView):
     def post(self, request):
         logout(request)
         return Response({'message': 'Logged out successfully'})
+
+
+class FormView(APIView):
+    def post(self, request):
+        family = request.data.get('family')
+        name = request.data.get('name')
+        surname = request.data.get('surname')
+        age = request.data.get('age')
+        sex = request.data.get('sex')
+        country_data = request.data.get('country')
+        country = CountryModel.objects.get(code=country_data['code'])
+        food = request.data.get('food')
+        dietician = food['dietician']
+
+        vegan = food['vegan']
+        traditional = food['traditional']
+        UserModel.objects.create(family=family, name=name, surname=surname, sex=sex, age=age, country=country,
+                                 dietician=dietician, vegan=vegan, traditional=traditional)
+        return Response({'status': status.HTTP_200_OK})

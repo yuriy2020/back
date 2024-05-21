@@ -74,11 +74,11 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
-    'http://127.0.0.1'
-    # Add any other allowed origins here
-]
+# CORS_ORIGIN_WHITELIST = [
+#     'http://localhost:3000',
+#     'http://127.0.0.1'
+#     # Add any other allowed origins here
+# ]
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_ALLOW_ALL = True
