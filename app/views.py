@@ -25,7 +25,7 @@ class CurrentUserViewSet(viewsets.ModelViewSet):
 
 class RegisterView(APIView):
     def get(self, request):
-        return render(request, 'register.html')
+        return render(request, 'index.html')
 
     def post(self, request):
         user = request.data.get('username')
