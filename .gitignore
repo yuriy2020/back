@@ -5,8 +5,6 @@ __pycache__
 .idea/*
 /local_settings.py
 /gist
-/to_static
-/static
 /logs
 /cache
 /cache/*
