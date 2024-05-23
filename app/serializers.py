@@ -13,11 +13,13 @@ class UserModelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserModel
-        fields = ('family',
+        fields = ('id',
+                  'family',
                   'name',
                   'surname',
                   'country',
                   'sex',
+                  'age',
                   'traditional',
                   'dietician',
                   'vegan',)
