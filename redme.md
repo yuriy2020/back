@@ -1,10 +1,22 @@
 # 
 python 3.7.x
-сделать venv и войти.
+сделать venv и войти
+
+```shell
+.\venv\Scripts\activate
+```
+
+
 - далее подгрузить из  [requirements.txt](requirements.txt)
+```shell
+pip install -r requirements.txt
+```
 #
 - создание базы \
-psql -U {postgres} -h {localhost} -p 5432 -c "CREATE DATABASE {rmp_xxx};"
+```shell
+psql -U postgres -h localhost -p 5432 -c "CREATE DATABASE rmp;"
+```
+
 
 python manage.py makemigration
 python manage.py migrate
@@ -25,3 +37,7 @@ for country in COUNTRIES:
 ```
 
 - далее 2 раза Enter
+ ## запустить сервер на 5000 порту
+```shell
+python manage.py runserver 5000
+```
