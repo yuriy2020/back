@@ -1,3 +1,5 @@
+import time
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render
@@ -60,10 +62,36 @@ class LoginView(APIView):
             token, created = Token.objects.get_or_create(user=user)
             return Response({'token': token.key, 'status': status.HTTP_200_OK})
         else:
-            return Response({'message': 'Invalid email or password'}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response({'message': 'Неверные логин или пароль'}, status=status.HTTP_401_UNAUTHORIZED)
 
 
 class LogoutView(APIView):
     def post(self, request):
         logout(request)
         return Response({'message': 'Logged out successfully'})
+
+
+class FormView(APIView):
+    def get(self, request):
+        start_time = time.time()
+        queryset = UserModel.objects.all()
+        serialized_data = UserModelSerializer(queryset, many=True).data
+        end_time = time.time()
+        execution_time = end_time - start_time
+        return Response({'status': status.HTTP_200_OK, 'data': serialized_data, 'time': execution_time})
+    def post(self, request):
+        family = request.data.get('family')
+        name = request.data.get('name')
+        surname = request.data.get('surname')
+        age = request.data.get('age')
+        sex = request.data.get('sex')
+        country_data = request.data.get('country')
+        country = CountryModel.objects.get(code=country_data['code'])
+        food = request.data.get('food')
+        dietician = food['dietician']
+
+        vegan = food['vegan']
+        traditional = food['traditional']
+        UserModel.objects.create(family=family, name=name, surname=surname, sex=sex, age=age, country=country,
+                                 dietician=dietician, vegan=vegan, traditional=traditional)
+        return Response({'status': status.HTTP_200_OK})
