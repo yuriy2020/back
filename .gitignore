@@ -1,3 +1,13 @@
-venv
-/.idea/dataSources.xml
-/.idea/vcs.xml
+/logs/*
+/venv
+/env
+__pycache__
+.idea/*
+/gist
+/logs
+/cache
+/cache/*
+/.coverage
+/.pytest_cache
+/unit_test_reports
+/upload/manual/*
